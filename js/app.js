@@ -1,6 +1,7 @@
 const randInt = function randomInteger(min, max) {
   return Math.floor(Math.random() * max - min + 1) + min;
 };
+
 // Enemies our player must avoid
 const Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -42,19 +43,39 @@ const Player = function() {
   this.sprite = 'images/char-boy.png';
 };
 
-Player.prototype.update = function() {};
+Player.prototype.update = function() {
+  this.detectCollisions();
+};
 
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 Player.prototype.handleInput = function(key) {
-  const STEP = 25;
+  const STEP = 50;
   (key === 'left') ? ((this.x === 0) ? this.x = 0 : this.x -= STEP) :
   (key === 'up') ? ((this.y === -20) ? this.y = -20 : this.y -= STEP) :
   (key === 'right') ? ((this.x === 400) ? this.x = 400 : this.x += STEP) :
   (key === 'down') ? ((this.y === 430) ? this.y = 430 : this.y += STEP) :
   console.log("Invalid key! Please use arrow keys!");
+  console.log(this.x);
+};
+
+// Method to detect collision between player and enemies
+Player.prototype.detectCollisions = function() {
+  const COLLINT = 35; // Collision intersection
+  allEnemies.forEach((enemy) => {
+    ( enemy.x <= this.x + COLLINT &&
+      enemy.x + COLLINT >= this.x &&
+      enemy.y <= this.y + COLLINT &&
+      enemy.y + COLLINT >= this.y ) && this.resetPos();
+  });
+};
+
+// Method to reset player's position to start point
+Player.prototype.resetPos = function() {
+  this.x = this.defaultPos.x;
+  this.y = this.defaultPos.y;
 };
 
 // Now instantiate your objects.
