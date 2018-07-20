@@ -36,8 +36,9 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 const Player = function() {
-  this.x = 200;
-  this.y = 380;
+  this.defaultPos = { x: 200, y: 380 };
+  this.x = this.defaultPos.x;
+  this.y = this.defaultPos.y;
   this.sprite = 'images/char-boy.png';
 };
 
@@ -47,7 +48,18 @@ Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function() {};
+Player.prototype.handleInput = function(key) {
+  const STEP = 25;
+  if (key === 'left') {
+    (this.x === 0) ? this.x = 0 : this.x -= STEP;
+  } else if (key === 'up') {
+    (this.y === -20) ? this.y = -20 : this.y -= STEP;
+  } else if (key === 'right') {
+    (this.x === 400) ? this.x = 400 : this.x += STEP;
+  } else if (key === 'down') {
+    (this.y === 430) ? this.y = 430 : this.y += STEP;
+  }
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
