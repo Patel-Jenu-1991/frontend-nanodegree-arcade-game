@@ -7,6 +7,7 @@ const Enemy = function(x, y) {
     // we've provided one for you to get started
     this.x = x;
     this.y = y;
+    this.speed = (Math.random() + 1.25) * 200;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -18,6 +19,12 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if (this.x > 505) {
+      this.x = -100 * randInt(1, 3);
+      this.y = 71 * randInt(1, 3);
+    } else {
+      this.x += this.speed * dt;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
