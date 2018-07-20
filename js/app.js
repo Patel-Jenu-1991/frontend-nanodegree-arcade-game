@@ -50,15 +50,11 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
   const STEP = 25;
-  if (key === 'left') {
-    (this.x === 0) ? this.x = 0 : this.x -= STEP;
-  } else if (key === 'up') {
-    (this.y === -20) ? this.y = -20 : this.y -= STEP;
-  } else if (key === 'right') {
-    (this.x === 400) ? this.x = 400 : this.x += STEP;
-  } else if (key === 'down') {
-    (this.y === 430) ? this.y = 430 : this.y += STEP;
-  }
+  (key === 'left') ? ((this.x === 0) ? this.x = 0 : this.x -= STEP) :
+  (key === 'up') ? ((this.y === -20) ? this.y = -20 : this.y -= STEP) :
+  (key === 'right') ? ((this.x === 400) ? this.x = 400 : this.x += STEP) :
+  (key === 'down') ? ((this.y === 430) ? this.y = 430 : this.y += STEP) :
+  console.log("Invalid key! Please use arrow keys!");
 };
 
 // Now instantiate your objects.
