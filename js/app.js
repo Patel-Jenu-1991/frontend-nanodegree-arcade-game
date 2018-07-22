@@ -37,10 +37,8 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 const Player = function() {
-  this.defaultPos = { x: 200, y: 380 };
-  this.x = this.defaultPos.x;
-  this.y = this.defaultPos.y;
   this.sprite = 'images/char-boy.png';
+  this.resetPos();
 };
 
 Player.prototype.update = function() {
@@ -63,7 +61,7 @@ Player.prototype.handleInput = function(key) {
 
 // Method to detect collision between player and enemies
 Player.prototype.detectCollisions = function() {
-  const COLLINT = 35; // Collision intersection
+  const COLLINT = 40; // Collision intersection
   allEnemies.forEach((enemy) => {
     ( enemy.x <= this.x + COLLINT &&
       enemy.x + COLLINT >= this.x &&
@@ -74,6 +72,7 @@ Player.prototype.detectCollisions = function() {
 
 // Method to reset player's position to start point
 Player.prototype.resetPos = function() {
+  this.defaultPos = { x: 200, y: 380 };
   this.x = this.defaultPos.x;
   this.y = this.defaultPos.y;
 };
