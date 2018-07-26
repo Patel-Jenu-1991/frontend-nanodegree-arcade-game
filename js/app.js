@@ -43,7 +43,7 @@ const Player = function() {
 };
 
 Player.prototype.update = function() {
-  // this.pickGems();
+
 };
 
 Player.prototype.render = function() {
@@ -106,11 +106,10 @@ const checkCollisions = function() {
 const collectGems = function() {
   const COLLINT = 30; // Collision intersection
   allGems.forEach((gem) => {
-    if ( (gem.x <= (player.x + COLLINT + 25)) &&
-      ((gem.x + COLLINT + 25) >= player.x) &&
+    if ( (gem.x <= (player.x + (COLLINT * 2))) &&
+      ((gem.x + (COLLINT * 2)) >= player.x) &&
       (gem.y <= (player.y + COLLINT - 5)) &&
-      ((gem.y + COLLINT - 5) >= player.y) ) {
-        // gem.offScreen();
+      ((gem.y + COLLINT - 6) >= player.y) ) {
         gem.height = 0;
       }
   });
@@ -125,8 +124,10 @@ const allEnemies = new Array(3).fill().map((enemy) => {
 });
 
 const allGems = new Array(6).fill().map((gem) => {
-  let x = 40 * randInt(2, 10),
-      y = (98 + Math.floor(Math.random() * randInt(1, 10))) * randInt(1, 3);
+  let x = 45 * randInt(1, 5),
+      y = (95 + Math.floor(Math.random() * randInt(1, 10))) * randInt(1, 3);
+  x += x;
+  y += 18;
   return new Gems(x, y);
 });
 
