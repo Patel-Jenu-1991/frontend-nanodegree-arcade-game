@@ -48,6 +48,7 @@ Player.prototype.update = function() {
 
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  (this.y === -20) && restartGame();
 };
 
 Player.prototype.handleInput = function(key) {
@@ -86,11 +87,6 @@ Gems.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.width, this.height);
 };
 
-// Gems.prototype.offScreen = function() {
-//   this.height = 0;
-//   this.width = 0;
-// };
-
 // Method to detect collision between player and enemies
 const checkCollisions = function() {
   const COLLINT = 40; // Collision intersection
@@ -106,13 +102,27 @@ const checkCollisions = function() {
 const collectGems = function() {
   const COLLINT = 30; // Collision intersection
   allGems.forEach((gem) => {
-    if ( (gem.x <= (player.x + (COLLINT * 2))) &&
-      ((gem.x + (COLLINT * 2)) >= player.x) &&
+    if ( (gem.x <= (player.x + (COLLINT * 2 - 5))) &&
+      ((gem.x + (COLLINT * 2 - 5)) >= player.x) &&
       (gem.y <= (player.y + COLLINT - 5)) &&
-      ((gem.y + COLLINT - 6) >= player.y) ) {
+      ((gem.y + COLLINT - 5) >= player.y) ) {
         gem.height = 0;
       }
   });
+};
+
+const restartGame = function() {
+  ctx.strokeStyle = "#000";
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 38pt Impact";
+  ctx.textAlign = "center";
+  ctx.lineWidth = 3;
+  var width = 505, height = 606;
+  ctx.fillText("You Won! Game Over!!", width / 2, height / 2);
+  ctx.strokeText("You Won! Game Over!!", width / 2, height / 2);
+  setTimeout(function () {
+    location.reload();
+  }, 3600);
 };
 
 // Now instantiate your objects.
