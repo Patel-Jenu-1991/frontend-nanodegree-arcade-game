@@ -139,10 +139,10 @@ var restartGame = function() {
   ctx.font = "bold 38pt Impact";
   ctx.textAlign = "center";
   ctx.lineWidth = 3;
-  var width = 505,
-    height = 606;
-  ctx.fillText("You Won! Game Over!!", width / 2, height / 2);
-  ctx.strokeText("You Won! Game Over!!", width / 2, height / 2);
+  var x = 505 / 2,
+    y = 606 / 2;
+  ctx.fillText("You Won! Game Over!!", x, y);
+  ctx.strokeText("You Won! Game Over!!", x, y);
   setTimeout(function() {
     location.reload();
   }, 3600);
