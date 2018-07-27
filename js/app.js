@@ -144,7 +144,7 @@ var restartGame = function() {
   ctx.fillText("You Won! Game Over!!", x, y);
   ctx.strokeText("You Won! Game Over!!", x, y);
   setTimeout(function() {
-    window.location.reload();
+    window.location.reload(true);
   }, 3600);
 };
 
