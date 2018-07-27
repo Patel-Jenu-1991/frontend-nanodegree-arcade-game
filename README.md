@@ -1,7 +1,9 @@
 Arcade Game Clone - FEND
 ===============================
 
-[Click here to play online!](https://patel-jenu-1991.github.io/frontend-nanodegree-arcade-game/index.html)
+## [Click here to play online!](https://patel-jenu-1991.github.io/frontend-nanodegree-arcade-game/index.html)
+
+![Game Screen Shot](images/arcade_screen.png)
 
 # How to play the game?
 
