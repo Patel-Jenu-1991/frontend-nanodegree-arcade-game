@@ -112,6 +112,7 @@ var collectGems = function() {
 };
 
 var restartGame = function() {
+  player.handleInput = null;
   ctx.strokeStyle = "#000";
   ctx.fillStyle = "#fff";
   ctx.font = "bold 38pt Impact";
