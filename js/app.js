@@ -1,9 +1,9 @@
-const randInt = function randomInteger(min, max) {
+var randInt = function randomInteger(min, max) {
   return Math.floor(Math.random() * max - min + 1) + min;
 };
 
 // Enemies our player must avoid
-const Enemy = function(x, y) {
+var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x;
@@ -36,7 +36,7 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-const Player = function() {
+var Player = function() {
   this.score = 0;
   this.sprite = 'images/char-boy.png';
   this.resetPos();
@@ -52,7 +52,7 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(key) {
-  const STEP = 50;
+  var STEP = 50;
   (key === 'left') ? ((this.x === 0) ? this.x = 0 : this.x -= STEP) :
   (key === 'up') ? ((this.y === -20) ? this.y = -20 : this.y -= STEP) :
   (key === 'right') ? ((this.x === 400) ? this.x = 400 : this.x += STEP) :
@@ -69,8 +69,8 @@ Player.prototype.resetPos = function() {
 };
 
 // Implement the gems class
-const Gems = function (x, y) {
-  const gemSprite = [
+var Gems = function (x, y) {
+  var gemSprite = [
     'images/Gem Blue.png',
     'images/Gem Green.png',
     'images/Gem Orange.png'
@@ -88,8 +88,8 @@ Gems.prototype.render = function() {
 };
 
 // Method to detect collision between player and enemies
-const checkCollisions = function() {
-  const COLLINT = 40; // Collision intersection
+var checkCollisions = function() {
+  var COLLINT = 40; // Collision intersection
   allEnemies.forEach((enemy) => {
     ( enemy.x <= player.x + COLLINT &&
       enemy.x + COLLINT >= player.x &&
@@ -99,8 +99,8 @@ const checkCollisions = function() {
 };
 
 // Method to collect gems
-const collectGems = function() {
-  const COLLINT = 30; // Collision intersection
+var collectGems = function() {
+  var COLLINT = 30; // Collision intersection
   allGems.forEach((gem) => {
     if ( (gem.x <= (player.x + (COLLINT * 2 - 5))) &&
       ((gem.x + (COLLINT * 2 - 5)) >= player.x) &&
@@ -111,7 +111,7 @@ const collectGems = function() {
   });
 };
 
-const restartGame = function() {
+var restartGame = function() {
   ctx.strokeStyle = "#000";
   ctx.fillStyle = "#fff";
   ctx.font = "bold 38pt Impact";
@@ -128,25 +128,25 @@ const restartGame = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const allEnemies = new Array(3).fill().map((enemy) => {
-  let x = -100 * randInt(1, 3), y = 71 * randInt(1, 3);
+var allEnemies = new Array(3).fill().map((enemy) => {
+  var x = -100 * randInt(1, 3), y = 71 * randInt(1, 3);
   return new Enemy(x, y);
 });
 
-const allGems = new Array(6).fill().map((gem) => {
-  let x = 45 * randInt(1, 5),
+var allGems = new Array(6).fill().map((gem) => {
+  var x = 45 * randInt(1, 5),
       y = (95 + Math.floor(Math.random() * randInt(1, 10))) * randInt(1, 3);
   x += x;
   y += 18;
   return new Gems(x, y);
 });
 
-const player = new Player();
+var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-    const allowedKeys = {
+    var allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
