@@ -17,7 +17,7 @@ Arcade Game Clone - FEND
 [Click Here](https://github.com/Patel-Jenu-1991/frontend-nanodegree-arcade-game/archive/master.zip) to Download the zip file.
 
 ## Option 2
-Clone the repository by cloning the following command in your terminal:
+Clone the repository by running the following command at your terminal:
 ```
 $ git clone https://github.com/Patel-Jenu-1991/frontend-nanodegree-arcade-game.git
 ```
