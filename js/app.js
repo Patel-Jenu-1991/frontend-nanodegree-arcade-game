@@ -5,12 +5,18 @@ var randInt = function randomInteger(min, max) {
   return Math.floor(Math.random() * max - min + 1) + min;
 };
 
+// Super class containing properties in common
+var Character = function(x, y) {
+  this.x = x;
+  this.y = y;
+  this.sprite = null;
+};
+
 // Enemies our player must avoid
 var Enemy = function(x, y) {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
-  this.x = x;
-  this.y = y;
+  Character.call(this, x, y);
   this.speed = (Math.random() + 1.25) * 200;
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
@@ -40,6 +46,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
+  Character.call(this);
   this.STEP = 50; // how far the player can move at each key stroke
   this.sprite = "images/char-boy.png";
   this.resetPos();
@@ -85,17 +92,16 @@ Player.prototype.resetPos = function() {
 
 // Implement the gems class
 var Gems = function(x, y) {
-  var gemSprite = [
+  Character.call(this, x, y);
+  this.gemSprite = [
       "images/Gem Blue.png",
       "images/Gem Green.png",
       "images/Gem Orange.png"
-    ],
-    LEN = gemSprite.length;
-  this.x = x;
-  this.y = y;
+    ];
+  this.LEN = this.gemSprite.length;
   this.width = 43;
   this.height = 75;
-  this.sprite = gemSprite[Math.floor(Math.random() * LEN)]; // gets a random sprite for the gem
+  this.sprite = this.gemSprite[Math.floor(Math.random() * this.LEN)]; // gets a random sprite for the gem
 };
 
 // Draws the gems on the play area
