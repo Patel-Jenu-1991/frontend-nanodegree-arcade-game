@@ -35,6 +35,18 @@ Enemy.prototype.update = function(dt) {
   } else {
     this.x += this.speed * dt;
   }
+  this.checkCollisions();
+};
+
+// Method to detect collision between player and enemies
+// Resets the player to start point in case of a collision
+Enemy.prototype.checkCollisions = function() {
+  if (this.x < player.x + 59 &&
+    this.x + 65 > player.x &&
+    this.y < player.y + 55 &&
+    this.y + 68 > player.y) {
+      player.resetPos();
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -50,6 +62,7 @@ var Player = function() {
   this.STEP = 50; // how far the player can move at each key stroke
   this.sprite = "images/char-boy.png";
   this.resetPos();
+  this.isWinner = false;
 };
 
 // This is a good place to update player stats
@@ -58,7 +71,9 @@ Player.prototype.update = function() {};
 // Draws the player and the game over screen if the player wins
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  this.y === -20 && restartGame();
+  if (this.isWinner) {
+    restartGame();
+  }
 };
 
 // Handles the key strokes (arrow keys) for game play and moves the player accordingly
@@ -80,6 +95,9 @@ Player.prototype.handleInput = function(key) {
     default:
       console.log("Invalid key! Please use arrow keys!");
       break;
+  }
+  if (this.y === -20) {
+    this.isWinner = true;
   }
 };
 
@@ -113,19 +131,6 @@ Gems.prototype.render = function() {
     this.width,
     this.height
   );
-};
-
-// Method to detect collision between player and enemies
-// Resets the player to start point in case of a collision
-var checkCollisions = function() {
-  var COLLINT = 40; // Collision intersection
-  allEnemies.forEach(enemy => {
-    enemy.x <= player.x + COLLINT &&
-      enemy.x + COLLINT >= player.x &&
-      enemy.y <= player.y + COLLINT &&
-      enemy.y + COLLINT >= player.y &&
-      player.resetPos();
-  });
 };
 
 // Method to collect gems
