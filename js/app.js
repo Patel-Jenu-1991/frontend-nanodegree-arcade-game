@@ -1,4 +1,4 @@
-"use strict"; // defined for global scope so I don't have to write it for every class/function 
+"use strict"; // defined for global scope so I don't have to write it for every class/function
 // Generates random integers between a
 // given minimum and an inclusive maximum integer
 var randInt = function randomInteger(min, max) {
@@ -40,6 +40,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
+  this.STEP = 50; // how far the player can move at each key stroke
   this.sprite = "images/char-boy.png";
   this.resetPos();
 };
@@ -56,17 +57,23 @@ Player.prototype.render = function() {
 // Handles the key strokes (arrow keys) for game play and moves the player accordingly
 // Restricts the player from moving outside the game screen
 Player.prototype.handleInput = function(key) {
-  var STEP = 50; // how far the player can move at each key stroke
-  key === "left"
-    ? this.x === 0 ? (this.x = 0) : (this.x -= STEP)
-    : key === "up"
-      ? this.y === -20 ? (this.y = -20) : (this.y -= STEP)
-      : key === "right"
-        ? this.x === 400 ? (this.x = 400) : (this.x += STEP)
-        : key === "down"
-          ? this.y === 430 ? (this.y = 430) : (this.y += STEP)
-          : console.log("Invalid key! Please use arrow keys!");
-  // console.log(this.x); // this is a debug string to know the player position
+  switch (key) {
+    case "left":
+      this.x === 0 ? (this.x = 0) : (this.x -= this.STEP);
+      break;
+    case "up":
+      this.y === -20 ? (this.y = -20) : (this.y -= this.STEP);
+      break;
+    case "right":
+      this.x === 400 ? (this.x = 400) : (this.x += this.STEP);
+      break;
+    case "down":
+      this.y === 430 ? (this.y = 430) : (this.y += this.STEP);
+      break;
+    default:
+      console.log("Invalid key! Please use arrow keys!");
+      break;
+  }
 };
 
 // Method to reset player's position to start point
