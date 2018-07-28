@@ -1,3 +1,4 @@
+"use strict"; // defined for global scope so I don't have to write it for every class/function 
 // Generates random integers between a
 // given minimum and an inclusive maximum integer
 var randInt = function randomInteger(min, max) {
