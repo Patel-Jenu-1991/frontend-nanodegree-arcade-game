@@ -1,4 +1,7 @@
-"use strict"; // defined for global scope so I don't have to write it for every class/function
+(function() {
+  "use strict";
+})(); // use strict IIFE
+
 // Generates random integers between a
 // given minimum and an inclusive maximum integer
 var randInt = function randomInteger(min, max) {
@@ -88,21 +91,42 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
   switch (key) {
     case "left":
-      this.x === 0 ? (this.x = 0) : (this.x -= this.STEP);
+      if (this.x === 0) {
+        this.x = 0;
+      } else {
+        this.x -= this.STEP;
+      }
+      // this.x === 0 ? (this.x = 0) : (this.x -= this.STEP);
       break;
     case "up":
-      this.y === -20 ? (this.y = -20) : (this.y -= this.STEP);
+      if (this.y === -20) {
+        this.y = -20;
+      } else {
+        this.y -= this.STEP;
+      }
+      // this.y === -20 ? (this.y = -20) : (this.y -= this.STEP);
       break;
     case "right":
-      this.x === 400 ? (this.x = 400) : (this.x += this.STEP);
+      if (this.x === 400) {
+        this.x = 400;
+      } else {
+        this.x += this.STEP;
+      }
+      // this.x === 400 ? (this.x = 400) : (this.x += this.STEP);
       break;
     case "down":
-      this.y === 430 ? (this.y = 430) : (this.y += this.STEP);
+      if (this.y === 430) {
+        this.y = 430;
+      } else {
+        this.y += this.STEP;
+      }
+      // this.y === 430 ? (this.y = 430) : (this.y += this.STEP);
       break;
     default:
       console.log("Invalid key! Please use arrow keys!");
       break;
   }
+
   if (this.y === -20) {
     this.isWinner = true;
   }
