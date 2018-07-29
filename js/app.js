@@ -43,7 +43,7 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.checkCollisions = function() {
   if (this.x < player.x + 59 &&
     this.x + 65 > player.x &&
-    this.y < player.y + 55 &&
+    this.y < player.y + 50 &&
     this.y + 68 > player.y) {
       player.resetPos();
     }
@@ -141,10 +141,10 @@ Gems.prototype.render = function() {
 // Method to collect gems
 Gems.prototype.disappear = function() {
   if (
-    this.x < player.x + 70 &&
-    this.x + 56 > player.x &&
-    this.y < player.y + 35 &&
-    this.y + 30 > player.y
+    this.x < player.x + 85 &&
+    this.x + 90 > player.x &&
+    this.y < player.y + 50 &&
+    this.y + 35 > player.y
   ) {
     this.height = 0; // makes the gem disappear if the player gets to it
   }
