@@ -66,7 +66,12 @@ var Player = function() {
 };
 
 // This is a good place to update player stats
-Player.prototype.update = function() {};
+Player.prototype.update = function() {
+  // allow the player to collect gems
+  allGems.forEach(function(gem) {
+    gem.disappear();
+  });
+};
 
 // Draws the player and the game over screen if the player wins
 Player.prototype.render = function() {
@@ -134,18 +139,15 @@ Gems.prototype.render = function() {
 };
 
 // Method to collect gems
-var collectGems = function() {
-  var COLLINT = 30; // Collision intersection
-  allGems.forEach(gem => {
-    if (
-      gem.x <= player.x + (COLLINT * 2 - 5) &&
-      gem.x + (COLLINT * 2 - 5) >= player.x &&
-      gem.y <= player.y + COLLINT - 5 &&
-      gem.y + COLLINT - 5 >= player.y
-    ) {
-      gem.height = 0; // makes the gem disappear if the player gets to it
-    }
-  });
+Gems.prototype.disappear = function() {
+  if (
+    this.x < player.x + 70 &&
+    this.x + 56 > player.x &&
+    this.y < player.y + 35 &&
+    this.y + 30 > player.y
+  ) {
+    this.height = 0; // makes the gem disappear if the player gets to it
+  }
 };
 
 // Handles game over state, draws the game over screen
