@@ -41,12 +41,14 @@ Enemy.prototype.update = function(dt) {
 // Method to detect collision between player and enemies
 // Resets the player to start point in case of a collision
 Enemy.prototype.checkCollisions = function() {
-  if (this.x < player.x + 59 &&
+  if (
+    this.x < player.x + 59 &&
     this.x + 65 > player.x &&
     this.y < player.y + 50 &&
-    this.y + 68 > player.y) {
-      player.resetPos();
-    }
+    this.y + 68 > player.y
+  ) {
+    player.resetPos();
+  }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -117,10 +119,10 @@ Player.prototype.resetPos = function() {
 var Gems = function(x, y) {
   Character.call(this, x, y);
   this.gemSprite = [
-      "images/Gem Blue.png",
-      "images/Gem Green.png",
-      "images/Gem Orange.png"
-    ];
+    "images/Gem Blue.png",
+    "images/Gem Green.png",
+    "images/Gem Orange.png"
+  ];
   this.LEN = this.gemSprite.length;
   this.width = 43;
   this.height = 75;
@@ -141,7 +143,7 @@ Gems.prototype.render = function() {
 // Method to collect gems
 Gems.prototype.disappear = function() {
   if (
-    this.x < player.x + 85 &&
+    this.x < player.x + 75 &&
     this.x + 90 > player.x &&
     this.y < player.y + 50 &&
     this.y + 35 > player.y
